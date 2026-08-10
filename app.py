@@ -18,7 +18,7 @@ def get_client_ip():
 def hello():
     client_ip = get_client_ip()
     return jsonify({
-        "message": "Hello from Flask backend and git",
+        "message": "Hello from Flask backend and git1",
         "status": "ok",
         "Real-IP": client_ip,
         "hostname": socket.gethostname(),
