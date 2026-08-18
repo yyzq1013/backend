@@ -3,15 +3,25 @@ pipeline {
 
     stages {
 
-        stage('Checkout') {
+        stage('Environment') {
             steps {
-                echo 'Source code checked out successfully'
+                sh '''
+                    echo "===== Environment ====="
+                    whoami
+                    pwd
+                    python3 --version || true
+                    pip3 --version || true
+                    git --version || true
+                '''
             }
         }
 
         stage('Test') {
             steps {
-                echo 'Running backend tests...'
+                sh '''
+                    echo "===== Test ====="
+                    pytest
+                '''
             }
         }
 
