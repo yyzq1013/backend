@@ -39,4 +39,5 @@ def info():
 
 if __name__ == "__main__":
     # 非常关键：必须监听 0.0.0.0，否则外部访问不到
+    print("CI/CD test")
     app.run(host="0.0.0.0", port=8000)
