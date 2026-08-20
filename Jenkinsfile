@@ -8,14 +8,24 @@ pipeline {
 
     stages {
 
-        stage('Environment') {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
+
+        stage('Install') {
             steps {
                 sh '''
-                    echo "===== Environment ====="
-                    whoami
-                    pwd
-                    python3 --version
-                    pip3 --version
+                    pip install -r requirements.txt
+                '''
+            }
+        }
+
+        stage('Test') {
+            steps {
+                sh '''
+                    pytest
                 '''
             }
         }
