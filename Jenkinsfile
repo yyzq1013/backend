@@ -1,35 +1,30 @@
 pipeline {
-    agent any
+    agent {
+        kubernetes {
+            yaml '''
+apiVersion: v1
+kind: Pod
+metadata:
+  namespace: jenkins
+spec:
+  containers:
+  - name: python
+    image: python:3.11-slim
+    command:
+    - sleep
+    args:
+    - 99d
+'''
+        }
+    }
 
     stages {
-
-        stage('Environment') {
+        stage('Python Version') {
             steps {
-                sh '''
-                    echo "===== Environment ====="
-                    whoami
-                    pwd
-                    python3 --version || true
-                    pip3 --version || true
-                    git --version || true
-                '''
+                container('python') {
+                    sh 'python3 --version'
+                }
             }
         }
-
-        stage('Test') {
-            steps {
-                sh '''
-                    echo "===== Test ====="
-                    pytest
-                '''
-            }
-        }
-
-        stage('Build') {
-            steps {
-                echo 'Building backend...'
-            }
-        }
-
     }
 }
