@@ -36,8 +36,10 @@ spec:
     command:
     - /bin/sh
     args:
-    - -c
-    - sleep 999999
+    - |
+      while true; do
+        sleep 3600
+      done
     tty: true
 """
         }
