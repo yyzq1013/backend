@@ -34,11 +34,10 @@ spec:
     image: 192.168.0.48:5000/kaniko-shell:latest
     imagePullPolicy: IfNotPresent
     command:
-        - /busybox
+    - /bin/sh
     args:
-        - sh
-        - -c
-        - sleep 999999
+    - -c
+    - sleep 999999
     tty: true
 """
         }
