@@ -14,6 +14,7 @@ spec:
 
   - name: python
     image: 192.168.0.48:5000/python
+    imagePullPolicy: IfNotPresent
     command:
     - sleep
     args:
@@ -21,7 +22,8 @@ spec:
     tty: true
 
   - name: kubectl
-    image: 192.168.0.48:5000/kubectl
+    image: 192.168.0.48:5000/kubectl:latest
+    imagePullPolicy: IfNotPresent
     command:
     - sleep
     args:
@@ -29,7 +31,8 @@ spec:
     tty: true
 
   - name: kaniko
-    image: 192.168.0.48:5000/kaniko:latest
+    image: 192.168.0.48:5000/kaniko-shell:latest
+    imagePullPolicy: IfNotPresent
     command:
     - sleep
     args:
