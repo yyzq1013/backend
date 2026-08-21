@@ -122,7 +122,26 @@ spec:
             steps {
                 container('kubectl') {
                     sh '''
-                        kubectl set image deployment/$DEPLOYMENT                           $CONTAINER=$REGISTRY/$IMAGE:$IMAGE_TAG                           -n $NAMESPACE
+                        set -eux
+
+                        echo "=== Current deployment ==="
+                        kubectl get deployment backend -n default
+
+                        echo "=== Updating image ==="
+                        kubectl set image deployment/backend \
+                            backend=192.168.0.48:5000/backend:${BUILD_NUMBER} \
+                            -n default
+
+                        echo "=== Waiting rollout ==="
+                        kubectl rollout status deployment/backend \
+                            -n default \
+                            --timeout=120s
+
+                        echo "=== Final status ==="
+                        kubectl get pods \
+                            -l app=backend \
+                            -n default \
+                            -o wide
                     '''
                 }
             }
