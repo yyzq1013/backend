@@ -22,7 +22,7 @@ spec:
     tty: true
 
   - name: kubectl
-    image: 192.168.0.48:5000/kubectl:latest
+    image: 192.168.0.48:5000/kubectl:1.33
     imagePullPolicy: IfNotPresent
     command:
     - sleep
