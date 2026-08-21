@@ -13,7 +13,7 @@ spec:
   containers:
 
   - name: python
-    image: python:3.11-slim
+    image: 192.168.0.48:5000/python
     command:
     - sleep
     args:
@@ -21,7 +21,7 @@ spec:
     tty: true
 
   - name: kubectl
-    image: bitnami/kubectl:1.33
+    image: 192.168.0.48:5000/kubectl
     command:
     - sleep
     args:
@@ -29,7 +29,7 @@ spec:
     tty: true
 
   - name: kaniko
-    image: gcr.io/kaniko-project/executor:latest
+    image: 192.168.0.48:5000/kaniko:latest
     command:
     - sleep
     args:
