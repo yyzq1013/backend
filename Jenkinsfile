@@ -124,24 +124,13 @@ spec:
                     sh '''
                         set -eux
 
-                        echo "=== Current deployment ==="
-                        kubectl get deployment backend -n default
+                        echo "HELLO FROM KUBECTL"
 
-                        echo "=== Updating image ==="
-                        kubectl set image deployment/backend \
-                            backend=192.168.0.48:5000/backend:${BUILD_NUMBER} \
-                            -n default
+                        kubectl version --client
 
-                        echo "=== Waiting rollout ==="
-                        kubectl rollout status deployment/backend \
-                            -n default \
-                            --timeout=120s
+                        kubectl get pods -n default
 
-                        echo "=== Final status ==="
-                        kubectl get pods \
-                            -l app=backend \
-                            -n default \
-                            -o wide
+                        echo "DEPLOY TEST FINISHED"
                     '''
                 }
             }
