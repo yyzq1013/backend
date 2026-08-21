@@ -35,6 +35,7 @@ spec:
     imagePullPolicy: Always
     command:
     - /bin/sh
+    - -c
     args:
     - |
       while true; do
