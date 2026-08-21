@@ -35,14 +35,6 @@ spec:
     args:
     - 99d
     tty: true
-    volumeMounts:
-    - name: docker-config
-      mountPath: /kaniko/.docker
-
-  volumes:
-  - name: docker-config
-    secret:
-      secretName: dockerhub-secret
 """
         }
     }
@@ -107,7 +99,13 @@ spec:
             steps {
                 container('kaniko') {
                     sh '''
-                        /kaniko/executor                           --context $WORKSPACE                           --dockerfile Dockerfile                           --destination $REGISTRY/$IMAGE:$IMAGE_TAG                           --destination $REGISTRY/$IMAGE:latest                           --insecure                           --skip-tls-verify
+                    /kaniko/executor \
+                        --context $WORKSPACE \
+                        --dockerfile Dockerfile \
+                        --destination 192.168.0.48:5000/backend:${BUILD_NUMBER} \
+                        --destination 192.168.0.48:5000/backend:latest \
+                        --insecure \
+                        --skip-tls-verify
                     '''
                 }
             }
