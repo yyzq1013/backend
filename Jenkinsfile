@@ -14,7 +14,7 @@ spec:
 
   - name: python
     image: 192.168.0.48:5000/python
-    imagePullPolicy: IfNotPresent
+    imagePullPolicy: Always
     command:
     - sleep
     args:
@@ -23,7 +23,7 @@ spec:
 
   - name: kubectl
     image: 192.168.0.48:5000/kubectl:1.33
-    imagePullPolicy: IfNotPresent
+    imagePullPolicy: Always
     command:
     - sleep
     args:
@@ -32,7 +32,7 @@ spec:
 
   - name: kaniko
     image: 192.168.0.48:5000/kaniko-shell:latest
-    imagePullPolicy: IfNotPresent
+    imagePullPolicy: Always
     command:
     - /bin/sh
     args:
